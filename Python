@@ -1,0 +1,30 @@
+'''Calculate the total cost of an item including tax based on whether it is considered a necessary or luxury item. 
+The tax rate for basic necessities is 1%, the tax rate for luxury items is 9%. For simplicity of implementation, 
+all transactions are measured in cents (pennies).'''
+
+prices = {"toothpaste": 325, "bracelet": 1095}
+
+items = {"toothpaste": "necessity", "bracelet": "luxury"}
+
+def total_cost(item):
+    for thing in prices:
+        if item == thing:
+            total = prices[thing]
+    for i in items:
+        if i == item and items[item] == "necessity":
+            total += int(total * .01)
+        elif i == item and items[item] == "luxury":
+            total += int(total * .09)
+    return total
+
+import unittest
+
+class MyTest(unittest.TestCase):
+    def test_total_cost_toothpaste(self):
+        self.assertEqual(total_cost('toothpaste'), 328)
+
+    def test_total_cost_bracelet(self):
+        self.assertEqual(total_cost('bracelet'), 1193)
+
+if __name__ == '__main__':
+    unittest.main()
