@@ -2,18 +2,15 @@
 The tax rate for basic necessities is 1%, the tax rate for luxury items is 9%. For simplicity of implementation, 
 all transactions are measured in cents (pennies).'''
 
-prices = {"toothpaste": 325, "bracelet": 1095}
-
-items = {"toothpaste": "necessity", "bracelet": "luxury"}
+prices = {"toothpaste": [325, "necessity"], "bracelet": [1095, "luxury"]}
 
 def total_cost(item):
     for thing in prices:
         if item == thing:
-            total = prices[thing]
-    for i in items:
-        if i == item and items[item] == "necessity":
+            total = prices[item][0]
+        if item == thing and prices[item][1] == "necessity":
             total += int(total * .01)
-        elif i == item and items[item] == "luxury":
+        elif item == thing and prices[item][1] == "luxury":
             total += int(total * .09)
     return total
 
